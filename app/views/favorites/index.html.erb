@@ -1,0 +1,22 @@
+<% title "Your favorites" %>
+
+<h2>This is your favorites from Twitter!</h2>
+
+<% form_tag unfavorite_path do %>
+<table>
+  <tr>
+    <th></th>
+    <th>tweet message<th>
+  </tr>
+<% @favorites.each do |favorite| %>
+  <tr class="<%= cycle('even','odd') %>">
+    <td><%= check_box_tag "tweet_ids[]", favorite.id_str%></td>
+    <td><%= auto_link favorite.text %></td>
+  </tr>
+<% end %>
+</table>
+<hr>
+<input type="checkbox" id="select_all" >Select all
+<hr>
+<%= submit_tag "Remove selected tweets from my favorites!" %>
+<% end %>
